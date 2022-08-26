@@ -33,18 +33,20 @@ class TasksScreen extends StatelessWidget {
               ),
             ),
           ),
-          ListView.builder(
-              itemCount: tasksList.length,
-              itemBuilder: (context, index) {
-                var task = tasksList[index];
-                return ListTile(
-                  title: Text(task.title),
-                  trailing: Checkbox(
-                    value: task.isDone,
-                    onChanged: (value) {},
-                  ),
-                );
-              })
+          Expanded(
+            child: ListView.builder(
+                itemCount: tasksList.length,
+                itemBuilder: (context, index) {
+                  var task = tasksList[index];
+                  return ListTile(
+                    title: Text(task.title),
+                    trailing: Checkbox(
+                      value: task.isDone,
+                      onChanged: (value) {},
+                    ),
+                  );
+                }),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
