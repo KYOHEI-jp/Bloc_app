@@ -33,20 +33,7 @@ class TasksScreen extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-                itemCount: tasksList.length,
-                itemBuilder: (context, index) {
-                  var task = tasksList[index];
-                  return ListTile(
-                    title: Text(task.title),
-                    trailing: Checkbox(
-                      value: task.isDone,
-                      onChanged: (value) {},
-                    ),
-                  );
-                }),
-          )
+          TasksList(tasksList: tasksList)
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -54,6 +41,33 @@ class TasksScreen extends StatelessWidget {
         tooltip: 'Add Task',
         child: const Icon(Icons.add),
       ),
+    );
+  }
+}
+
+class TasksList extends StatelessWidget {
+  const TasksList({
+    Key? key,
+    required this.tasksList,
+  }) : super(key: key);
+
+  final List<Task> tasksList;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.builder(
+          itemCount: tasksList.length,
+          itemBuilder: (context, index) {
+            var task = tasksList[index];
+            return ListTile(
+              title: Text(task.title),
+              trailing: Checkbox(
+                value: task.isDone,
+                onChanged: (value) {},
+              ),
+            );
+          }),
     );
   }
 }
