@@ -56,6 +56,7 @@ class TasksScreen extends StatelessWidget {
   }
 }
 
+// TODO 上から下ににゅるっと出したい
 class AddTaskScreen extends StatelessWidget {
   const AddTaskScreen({
     Key? key,
@@ -81,11 +82,18 @@ class AddTaskScreen extends StatelessWidget {
               height: 10,
             ),
             TextField(
-              autofocus: true,
               controller: titleController,
               decoration: const InputDecoration(
                   label: Text("タイトル"), border: OutlineInputBorder()),
             ),
+            TextButton(
+              onPressed: () {},
+              child: const Text("キャンセル"),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text("OK"),
+            )
           ],
         ),
       ),
