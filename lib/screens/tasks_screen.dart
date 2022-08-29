@@ -6,6 +6,17 @@ import '../models/task.dart';
 class TasksScreen extends StatelessWidget {
   TasksScreen({Key? key}) : super(key: key);
 
+  TextEditingController titleController = TextEditingController();
+
+  void _addTask(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => SingleChildScrollView(
+        child: AddTaskScreen(titleController: titleController),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TasksBloc, TasksState>(
@@ -35,12 +46,49 @@ class TasksScreen extends StatelessWidget {
             ],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () => _addTask(context),
             tooltip: 'Add Task',
             child: const Icon(Icons.add),
           ),
         );
       },
+    );
+  }
+}
+
+class AddTaskScreen extends StatelessWidget {
+  const AddTaskScreen({
+    Key? key,
+    required this.titleController,
+  }) : super(key: key);
+
+  final TextEditingController titleController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const Text(
+              "タスクを追加する",
+              style: TextStyle(fontSize: 24),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextField(
+              autofocus: true,
+              controller: titleController,
+              decoration: const InputDecoration(
+                  label: Text("タイトル"), border: OutlineInputBorder()),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
