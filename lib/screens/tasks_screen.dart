@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../blocs/bloc_exports.dart';
@@ -87,19 +88,26 @@ class AddTaskScreen extends StatelessWidget {
               decoration: const InputDecoration(
                   label: Text("タイトル"), border: OutlineInputBorder()),
             ),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text("キャンセル"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text("キャンセル"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    var task = Task(
+                        title: titleController.text,
+                        isDone: null,
+                        isDeleted: null);
+                    context.read<TasksBloc>().add(AddTask(task: task));
+                    Navigator.pop(context);
+                  },
+                  child: const Text("追加する"),
+                )
+              ],
             ),
-            ElevatedButton(
-              onPressed: () {
-                var task = Task(
-                    title: titleController.text, isDone: null, isDeleted: null);
-                context.read<TasksBloc>().add(AddTask(task: task));
-                Navigator.pop(context);
-              },
-              child: const Text("追加する"),
-            )
           ],
         ),
       ),
