@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tasks_app/blocs/bloc/tasks_bloc.dart';
+import 'package:flutter_tasks_app/widgets/task_tile.dart';
 
 import '../models/task.dart';
 
@@ -20,17 +21,9 @@ class TasksList extends StatelessWidget {
           itemCount: tasksList.length,
           itemBuilder: (context, index) {
             var task = tasksList[index];
-            return ListTile(
-              title: Text(task.title),
-              trailing: Checkbox(
-                value: task.isDone,
-                onChanged: (value) {
-                  context.read<TasksBloc>().add(UpdateTask(task: task));
-                },
-              ),
-              onLongPress: () => context.read<TasksBloc>().add(DeleteTask(task: task)),
-            );
+            return TaskTile(task: task);
           }),
     );
   }
 }
+
