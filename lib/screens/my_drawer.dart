@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tasks_app/screens/recycle_bin.dart';
 import 'package:flutter_tasks_app/screens/tasks_screen.dart';
 
+import '../blocs/bloc_exports.dart';
+
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
 
@@ -20,17 +22,21 @@ class MyDrawer extends StatelessWidget {
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(TasksScreen.id);
+          BlocBuilder<TasksBloc, TasksState>(
+            builder: (context, state) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed(TasksScreen.id);
+                },
+                child: ListTile(
+                  leading: const Icon(Icons.folder_special),
+                  title: const Text("My Tasks"),
+                  trailing: Text("${state.allTasks.length}"),
+                ),
+              );
             },
-            child: const ListTile(
-              leading: Icon(Icons.folder_special),
-              title: Text("My Tasks"),
-              trailing: Text("0"),
-            ),
           ),
-          Divider(),
+          const Divider(),
           GestureDetector(
             onTap: () {
               Navigator.of(context).pushNamed(RecycleBin.id);
