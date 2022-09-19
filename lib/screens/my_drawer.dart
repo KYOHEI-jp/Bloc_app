@@ -26,7 +26,7 @@ class MyDrawer extends StatelessWidget {
               builder: (context, state) {
                 return GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushNamed(TasksScreen.id);
+                    Navigator.of(context).pushReplacementNamed(TasksScreen.id);
                   },
                   child: ListTile(
                     leading: const Icon(Icons.folder_special),
@@ -41,7 +41,7 @@ class MyDrawer extends StatelessWidget {
               builder: (context, state) {
                 return GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushNamed(RecycleBin.id);
+                    Navigator.of(context).pushReplacementNamed(RecycleBin.id);
                   },
                   child: ListTile(
                     leading: Icon(Icons.delete),
