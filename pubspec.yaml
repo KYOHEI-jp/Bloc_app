@@ -9,12 +9,13 @@ environment:
   sdk: ">=2.16.2 <3.0.0"
 
 dependencies:
+  cupertino_icons: ^1.0.2
+  equatable: ^2.0.3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   hydrated_bloc: ^8.1.0
-  cupertino_icons: ^1.0.2
-  equatable: ^2.0.3
+  intl: ^0.17.0
   path_provider: ^2.0.9
 
 dev_dependencies:
